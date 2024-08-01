@@ -4,7 +4,7 @@ import sqlite3
 class Cursor:
 
     def __enter__(self):
-        self.connect = sqlite3.connect(r'/root/db/myJournal.db')
+        self.connect = sqlite3.connect(r'/app/myJournal.db')
         self.cursor = self.connect.cursor()
         return self.cursor
 

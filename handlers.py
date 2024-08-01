@@ -26,6 +26,20 @@ router = Router()
 @router.message(StateFilter(None), Command("start"))
 async def start_handler(msg: Message, state: FSMContext):
     with Cursor() as cur:
+
+        cur.execute(
+            """
+            CREATE TABLE IF NOT EXISTS users (
+                user_id INTEGER PRIMARY KEY,
+                ads INTEGER,
+                time_zone TEXT,
+                time_reminder TEXT,
+                hide_mode INTEGER,
+                last_executive_date TEXT
+            )
+            """
+        )
+
         if len(cur.execute(
                 "SELECT user_id FROM users WHERE user_id = '{0}'".format(msg.from_user.id)).fetchall()) == 0:
             cur.execute(
