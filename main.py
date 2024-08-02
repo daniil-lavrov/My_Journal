@@ -38,7 +38,7 @@ async def main():
     scheduler = AsyncIOScheduler()
     set_scheduled_jobs(scheduler, bot, config)
 
-    redis = Redis(host="127.0.0.1", port=6379)
+    redis = Redis(host="redis", port=6379)
 
     dp = Dispatcher(storage=RedisStorage(redis=redis))
     dp.include_router(router)
